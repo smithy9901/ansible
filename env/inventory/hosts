@@ -1,2 +1,3 @@
 [peervpn]
 test-host-01 ansible_host=192.168.1.5
+test-host-01 ansible_host=192.168.1.6 peervpn_host=192.168.1.5 
