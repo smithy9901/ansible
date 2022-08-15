@@ -1,0 +1,5 @@
+---
+
+- import_tasks: peervpn.yml
+  tags:
+      - peervpn

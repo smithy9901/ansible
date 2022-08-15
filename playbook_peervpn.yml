@@ -1,0 +1,6 @@
+---
+
+
+- hosts: peervpn
+  roles:
+    - { role: peervpn, tags: peervpn }

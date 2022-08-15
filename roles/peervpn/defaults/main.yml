@@ -1,0 +1,5 @@
+---
+
+peervpn_port: 7000
+peervpn_networkname: test
+peervpn_interface: peervpn0

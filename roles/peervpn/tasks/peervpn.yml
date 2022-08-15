@@ -1,0 +1,37 @@
+---
+
+- name: peervpn | Add Peervpn repository apt-key
+  apt_key:
+    url: "https://smithy9901.github.io/ppa_repository/ubuntu/KEY.gpg"
+
+- name: peervpn | Adding Peervpn repository
+  apt_repository:
+    repo: 'deb https://smithy9901.github.io/ppa_repository/ubuntu ./'
+    state: present
+
+- name: peervpn | Install Peervpn
+  apt:
+    pkg: "peervpn"
+    state: present
+    update_cache: yes
+
+- name: peervpn | Ensure directories creates
+  file:
+    path: "/etc/peervpn"
+    state: directory
+
+- name: peervpn | Ensure config /etc/peervpn/peervpn.conf exists
+  template:
+    src: "peervpn.conf.j2"
+    dest: /etc/peervpn/peervpn.conf
+  notify: restart peervpn
+
+- name: peervpn | Ensure systemd /etc/system/system/peervpn.service exists
+  template:
+    src: "peervpn.service.j2"
+    dest: /etc/system/system/peervpn.service
+
+- name: peervpn | ensure service started
+  systemd:
+    name:  peervpn
+    state: started
